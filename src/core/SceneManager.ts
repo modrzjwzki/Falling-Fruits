@@ -1,7 +1,5 @@
-import TestScene from "../scenes/TestScene";
 import { Engine } from "./Engine";
 import Scene from "./Scene";
-import { EventEmitter } from "events";
 
 
 export default class SceneManager {
@@ -22,8 +20,8 @@ export default class SceneManager {
         this.activeScene = this.scenes[0].scene;
         this.engine.application.ticker.add((delta) => this.update(delta));
     }
-    
-    public start(name: string) : void {
+
+    public start(name: string): void {
         this.scenes.forEach((scene, index) => {
             if (scene.name === name) {
                 this.stop();
@@ -39,11 +37,11 @@ export default class SceneManager {
         this.engine.application.stage.removeChildren();
     }
 
-    public add(scene: {scene: Scene, name: string}) : void {
+    public add(scene: { scene: Scene, name: string }): void {
         this.scenes.push(scene);
     }
 
-    public update(delta: number) : void{
+    public update(delta: number): void {
         if (this.activeScene) {
             this.engine.renderer.pixiRenderer.render(this.activeScene);
             this.activeScene?.update(delta);
@@ -66,5 +64,5 @@ export default class SceneManager {
         return null;
     }
 
- 
+
 }

@@ -1,4 +1,4 @@
-import { Graphics, Rectangle, Text } from "pixi.js";
+import { Graphics, Text } from "pixi.js";
 import Scene from "../core/Scene";
 import { Renderer } from "../core/Renderer";
 

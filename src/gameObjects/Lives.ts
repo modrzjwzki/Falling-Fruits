@@ -1,6 +1,5 @@
-import { BaseTexture, SCALE_MODES, Sprite, Spritesheet, Texture } from "pixi.js";
+import { SCALE_MODES, Sprite, Spritesheet } from "pixi.js";
 import GameObject from "../core/GameObject";
-import { Assets } from "@pixi/assets";
 
 export default class Lives extends GameObject {
 

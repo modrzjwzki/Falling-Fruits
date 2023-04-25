@@ -2,10 +2,8 @@ import { Application, Container } from "pixi.js";
 import { Renderer } from "./Renderer";
 import TestScene from "../scenes/TestScene";
 import SceneManager from "./SceneManager";
-import SuperTest from "../scenes/SuperTest";
 import GameScene from "../scenes/GameScene";
-import Resources from "./Resources";
-import { Assets, Loader } from "@pixi/assets";
+import { Assets } from "@pixi/assets";
 import MenuScene from "../scenes/MenuScene";
 
 export interface SceneSettings {

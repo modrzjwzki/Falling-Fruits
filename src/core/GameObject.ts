@@ -1,4 +1,4 @@
-import { Container, DisplayObject, IDestroyOptions, Renderer, Sprite } from "pixi.js";
+import { Container, DisplayObject, IDestroyOptions } from "pixi.js";
 import { Engine } from "./Engine";
 import Scene from "./Scene";
 import Keyboard from "./Keyboard";
@@ -25,7 +25,6 @@ export default class GameObject extends EventEmitterObject implements IGameObjec
     protected gameObjects: GameObject[] = [];
 
     protected events: { [key: string]: Function[] } = {};
-
 
     public name: string;
 

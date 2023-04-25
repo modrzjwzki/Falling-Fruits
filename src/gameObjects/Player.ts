@@ -1,9 +1,6 @@
-import { Assets } from "@pixi/assets";
 import GameObject from "../core/GameObject";
-import { AnimatedSprite, BaseTexture, Sprite, Spritesheet } from "pixi.js";
+import { AnimatedSprite, Spritesheet } from "pixi.js";
 import { Renderer } from "../core/Renderer";
-
-
 
 export default class Player extends GameObject {
 
@@ -51,7 +48,6 @@ export default class Player extends GameObject {
     }
 
     public async setup() {
-      
 
         const playerSprite = new AnimatedSprite(this.spritesheet.animations['knight iso char_idle'], true);
         playerSprite.animationSpeed = 0.1;
@@ -85,8 +81,6 @@ export default class Player extends GameObject {
 
         });
 
-        console.log(this.width, this.height);
-       
     }
 
     public movePlayer(keyEvent: KeyboardEvent) {
@@ -135,14 +129,14 @@ export default class Player extends GameObject {
         }
         if (this.isMoving.jumping) {
             this.jumpProgress += delta;
-            // oblicz położenie gracza na podstawie postępu skoku
+
             this.position.y = this.jumpStartY - this.jumpSpeed * this.jumpProgress + 0.5 * 9.81 * this.jumpProgress * this.jumpProgress;
-            // jeśli skok się skończył, wyłącz flagę isJumping
+
             if (this.jumpProgress >= this.jumpDuration) {
                 this.isMoving.jumping = false;
                 this.position.y = this.jumpStartY;
             }
- 
+
         }
     }
 }

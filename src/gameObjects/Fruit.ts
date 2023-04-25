@@ -13,7 +13,7 @@ export default class Fruit extends GameObject {
 
     public consumed: boolean = false;
 
-    public isPoisoned: boolean ;
+    public isPoisoned: boolean;
 
     constructor(
         public spritesheet: Spritesheet,
@@ -26,7 +26,7 @@ export default class Fruit extends GameObject {
     public async setup(): Promise<void> {
         const textures = this.spritesheet.textures;
 
-       
+
 
         const keys = Object.keys(textures);
         const randomKey = keys[Math.floor(Math.random() * keys.length)];

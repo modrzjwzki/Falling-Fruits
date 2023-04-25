@@ -1,7 +1,6 @@
 import GameObject from "../core/GameObject";
 import { Text } from 'pixi.js';
 
-
 export default class Points extends GameObject {
     
     public points: number = 0;

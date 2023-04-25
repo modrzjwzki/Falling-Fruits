@@ -1,4 +1,4 @@
-import { Application, Container, IDestroyOptions, Ticker } from "pixi.js";
+import { Application, Ticker } from "pixi.js";
 import { Engine } from "./Engine";
 import GameObject from "./GameObject";
 
