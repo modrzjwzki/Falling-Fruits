@@ -7,7 +7,7 @@ A simple boilerplate that loads PixiJS into a Vite + Vue instance.
 ```ts
 npm run install
 
-npm run dev
+npm run start
 ```
 
 ## What is Included
