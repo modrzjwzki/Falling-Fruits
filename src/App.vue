@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { onMounted, Ref, ref } from 'vue';
-import { PixiEngine } from './systems/engine';
+import { Engine } from './core/Engine';
 
 const canvas: Ref<Node | null> = ref(null);
 
 onMounted(async () => {
-    await PixiEngine.init(800, 600);
-    const canvasInfo = PixiEngine.getCanvas();
-    canvas.value?.appendChild(canvasInfo);
+
+    const application = Engine.getInstance();
+    application.init();
+
+    
+    // await PixiEngine.init(800, 600);
+    // const canvasInfo = PixiEngine.getCanvas();
+    canvas.value?.appendChild(application.getCanvas());
 });
 </script>
 

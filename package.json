@@ -2,15 +2,23 @@
   "name": "vue3-typescript-vite-pixijs",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --mode localhost",
+    "start": "vite --mode localhost",
     "build": "vue-tsc --noEmit && vite build --mode production",
     "preview": "vite preview --mode localhost"
   },
   "dependencies": {
+    "@pixi/assets": "^7.2.4",
+    "@pixi/events": "^7.2.4",
+    "eventemitter3": "^5.0.0",
+    "gsap": "^3.11.5",
+    "matter-js": "^0.19.0",
+    "pixi-spine": "^4.0.3",
+    "pixi-tween": "^0.2.0",
     "pixi.js": "^6.5.2",
     "vue": "^3.2.37"
   },
   "devDependencies": {
+    "@types/matter-js": "^0.18.2",
     "@types/node": "^18.7.15",
     "@vitejs/plugin-vue": "^3.1.0",
     "typescript": "^4.6.4",
