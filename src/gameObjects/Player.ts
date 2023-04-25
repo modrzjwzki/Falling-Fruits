@@ -25,10 +25,11 @@ export default class Player extends GameObject {
 
     public jumpDuration: number = 10;
 
-    public jumpHeight: number = 100;
+    public jumpHeight: number = 500;
 
     public jumpSpeed: number = this.jumpHeight / this.jumpDuration;
 
+    private jumpProgress: number = 0;
 
     constructor(
         public spritesheet: Spritesheet
@@ -84,6 +85,7 @@ export default class Player extends GameObject {
 
         });
 
+        console.log(this.width, this.height);
        
     }
 
@@ -120,6 +122,7 @@ export default class Player extends GameObject {
     public jump() {
         if (this.isMoving.jumping === true) return;
         this.isMoving.jumping = true;
+        this.jumpProgress = 0
     }
 
     public update(delta: number): void {
@@ -129,6 +132,17 @@ export default class Player extends GameObject {
         }
         if (this.isMoving.right && this.position.x < this.renderer.pixiRenderer.screen.width) {
             this.position.x += this.movmentSpeed;
+        }
+        if (this.isMoving.jumping) {
+            this.jumpProgress += delta;
+            // oblicz położenie gracza na podstawie postępu skoku
+            this.position.y = this.jumpStartY - this.jumpSpeed * this.jumpProgress + 0.5 * 9.81 * this.jumpProgress * this.jumpProgress;
+            // jeśli skok się skończył, wyłącz flagę isJumping
+            if (this.jumpProgress >= this.jumpDuration) {
+                this.isMoving.jumping = false;
+                this.position.y = this.jumpStartY;
+            }
+ 
         }
     }
 }

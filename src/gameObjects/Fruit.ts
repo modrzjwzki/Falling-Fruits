@@ -11,15 +11,22 @@ export default class Fruit extends GameObject {
 
     private renderer: Renderer = Renderer.getInstance();
 
+    public consumed: boolean = false;
+
+    public isPoisoned: boolean ;
+
     constructor(
         public spritesheet: Spritesheet,
         public fruitSpeed: number) {
         super();
+
+        this.isPoisoned = Math.random() < 0.1;
     }
 
     public async setup(): Promise<void> {
         const textures = this.spritesheet.textures;
 
+       
 
         const keys = Object.keys(textures);
         const randomKey = keys[Math.floor(Math.random() * keys.length)];
@@ -31,6 +38,10 @@ export default class Fruit extends GameObject {
         fruitSprite.anchor.set(0.5, 0.5);
         fruitSprite.scale.set(3);
 
+        if (this.isPoisoned) {
+            fruitSprite.tint = 0x093b00;
+        }
+
         this.addChild(fruitSprite);
 
 
@@ -41,7 +52,7 @@ export default class Fruit extends GameObject {
         this.position.y += this.fruitSpeed * delta;
         this.rotation += this.randomRotation * delta;
 
-        if (this.position.y > this.renderer.pixiRenderer.screen.height) {
+        if (this.position.y > this.renderer.pixiRenderer.screen.height + 50) {
             this.emit('destroy');
         }
 

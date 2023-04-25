@@ -29,8 +29,6 @@ export class Engine {
 
     public async init() {
 
-
-
         Assets.load('food.json')
 
         const gameScene = new GameScene();
@@ -73,18 +71,6 @@ export class Engine {
 
         this.application.renderer = this.renderer.pixiRenderer;
         // this.application.resizeTo = window;
-
-
-
-        console.log(this.sceneManager.activeScene)
-
-
-
-
-
-
-
-
     }
 
     public static getInstance(): Engine {

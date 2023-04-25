@@ -17,7 +17,7 @@ export class Renderer  {
     }
 
     constructor() {
-        this.renderer.backgroundColor = 0x000000;
+        this.renderer.backgroundColor = 0x474747;
         // this.renderer.view.style.position = "absolute";
         // this.renderer.view.style.display = "block";
         // this.renderer.view.style.left = "0";

@@ -45,13 +45,12 @@ export default class GameScene extends Scene {
             this.playerSpritesheet.parse();
         });
 
-        
+
     }
 
     public async setup() {
-     
-        this.player = new Player(this.playerSpritesheet!);
 
+        this.player = new Player(this.playerSpritesheet!);
         this.addChild(this.player);
 
         this.lives = new Lives(this.playerSpritesheet!);
@@ -67,7 +66,7 @@ export default class GameScene extends Scene {
         this.points.position.y = 100;
         this.addChild(this.points);
 
-        
+
     }
 
     public gameOver = () => {
@@ -89,15 +88,20 @@ export default class GameScene extends Scene {
         this.fruits.push(fruit);
 
         fruit.addListener('destroy', () => {
-            this.lives?.removeHeart();
+
+            if (!fruit.isPoisoned) {
+                this.lives?.removeHeart();
+            }
             fruit.destroy();
             delete this.fruits[this.fruits.indexOf(fruit)];
         })
         this.addChild(fruit);
     }
 
+
     public update(delta: number): void {
         super.update(delta);
+
 
         this.timer += delta;
         if (this.timer >= this.interval) {
@@ -107,32 +111,37 @@ export default class GameScene extends Scene {
 
 
         this.fruits.forEach((fruit) => {
-            if (this.hitTestRectangle(this.player, fruit)) {
-                this.points.addPoints(fruit.fruitPoints);
-                this.player?.emit('hit');
-                fruit.destroy();
-                delete this.fruits[this.fruits.indexOf(fruit)];
+            if (fruit.getBounds().intersects(this.player!.getBounds())) {
+
+                if (!fruit.consumed) {
+                    this.points.addPoints(fruit.fruitPoints);
+                    fruit.consumed = true;
+
+                    if (fruit.isPoisoned) {
+                        this.lives?.removeHeart();
+                    }
+                    this.player?.emit('hit');
+
+                    setTimeout(() => {
+
+                        fruit.destroy();
+                        delete this.fruits[this.fruits.indexOf(fruit)];
+
+                    }, 200)
+                }
+
+
+                const playerX = this.player!.position.x;
+                const fruitX = fruit.position.x;
+                const distance = playerX - fruitX;
+                const speed = 10;
+                fruit.position.x += distance / speed * delta;
+                fruit.position.y += distance / speed * delta;
+                fruit.scale.x *= 0.5 * delta;
+                fruit.scale.y *= 0.5 * delta;
             }
+
         })
 
-
     }
-
-    public hitTestRectangle(r1: any, r2: any) {
-        r1.left = r1.x;
-        r1.right = r1.x + r1.width;
-        r1.top = r1.y;
-        r1.bottom = r1.y + r1.height;
-
-        r2.left = r2.x;
-        r2.right = r2.x + r2.width;
-        r2.top = r2.y;
-        r2.bottom = r2.y + r2.height;
-
-        return !(r1.bottom < r2.top ||
-            r1.top > r2.bottom ||
-            r1.right < r2.left ||
-            r1.left > r2.right);
-    }
-
 }

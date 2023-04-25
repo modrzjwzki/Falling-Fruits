@@ -22,9 +22,7 @@ export default class SceneManager {
         this.activeScene = this.scenes[0].scene;
         this.engine.application.ticker.add((delta) => this.update(delta));
     }
-
     
-
     public start(name: string) : void {
         this.scenes.forEach((scene, index) => {
             if (scene.name === name) {
@@ -38,7 +36,6 @@ export default class SceneManager {
     }
 
     public stop() {
-        
         this.engine.application.stage.removeChildren();
     }
 
